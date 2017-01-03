@@ -18,6 +18,7 @@ train = pd.read_hdf('../input/train.h5')
 train = train[col]
 d_mean= train.median(axis=0) # get the median for every column
 
+
 train = data.train[col]
 n = train.isnull().sum(axis=1) # get the number of nulls for every row
 
@@ -44,7 +45,7 @@ model2.fit(np.array(data.train[col].fillna(d_mean).loc[y_is_within_cut, 'technic
 train = []
 
 # https://www.kaggle.com/ymcdull/two-sigma-financial-modeling/ridge-lb-0-0100659
-ymean_dict = dict(data.train.groupby(["id"])["y"].median())
+ymean_dict = dict(data.train.groupby(["id"])["y"].median()) # the id means sample? Get the median y for every sample
 
 while True:
     test = data.features[col]
@@ -52,9 +53,9 @@ while True:
     for c in test.columns:
         test[c + '_nan_'] = pd.isnull(test[c])
     test = test.fillna(d_mean)
-    test['znull'] = n
+    test['znull'] = n # prepare testing data for model 1
     pred = data.target
-    test2 = np.array(data.features[col].fillna(d_mean)['technical_20'].values).reshape(-1,1)
+    test2 = np.array(data.features[col].fillna(d_mean)['technical_20'].values).reshape(-1,1) # prepare testing data for model 2
     # weighted average of two model results
     pred['y'] = (model1.predict(test).clip(low_y_cut, high_y_cut) * 0.65) + (model2.predict(test2).clip(low_y_cut, high_y_cut) * 0.35)
     pred['y'] = pred.apply(lambda r: 0.95 * r['y'] + 0.05 * ymean_dict[r['id']] if r['id'] in ymean_dict else r['y'], axis = 1)
