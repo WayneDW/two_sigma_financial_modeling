@@ -14,5 +14,6 @@ Now that one-factor model works so well, should we include some others indicator
 
 Another important necessary work is to clip the y values and get rid of outliers.
 ![GitHub Logo](./images/y_distribution.png)
+
 According to [SRK](https://www.kaggle.com/sudalairajkumar/two-sigma-financial-modeling/univariate-analysis-regression-lb-0-006), models with clipping did almost the same with training data, but greatly increased the test score from 0.06 to 0.09
 
