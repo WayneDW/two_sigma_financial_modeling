@@ -11,3 +11,8 @@ As to the linear regression, which is also a one-factor model, he picked the ind
 
 Now that one-factor model works so well, should we include some others indicators to make it better? Currently, the result is not that satisfying, see [am I overfitting](https://www.kaggle.com/sudalairajkumar/two-sigma-financial-modeling/am-i-over-fitting). Maybe because the 2nd and 3rd indicators didn't give a good-enough overall correlation. But it is interesting to expore on fewer indicators and exclude thoese which is almost like uncorrelated with the target. And analyze different assets with different indicators. Thus our first goal maybe to dig asset ids that gave a large absolute correlation, and analyze the best indicators for each group of assets. On the asset correlation part, this guy already did some work. [Groups of highly correlated asset's ids](https://www.kaggle.com/uditsaini/two-sigma-financial-modeling/groups-of-highly-correlated-asset-s-ids)
 
+
+Another important work is to crop 
+
+![GitHub Logo](./images/y_distribution.png)
+
